@@ -1,8 +1,12 @@
 import { useParams } from "react-router-dom"
 import Data from "../../data.json"
-import PlanetInfo from "../components/PlanetComponents/PlanetInfo"
 import Tailwind from "../shared/Tailwind"
 import { useState } from "react"
+import PlanetText from "../components/PlanetComponents/PlanetText"
+import PlanetButtons from "../components/PlanetComponents/PlanetButtons"
+import PlanetInfos from "../components/PlanetComponents/PlanetInfos"
+import PlanetImage from "../components/PlanetComponents/PlanetImage"
+
 
 export default function Planet() {
 
@@ -10,12 +14,13 @@ export default function Planet() {
 
   const { planetName } = useParams()
   const planet = Data.find((planet) => planet.name === planetName)
-
   const [states, setState] = useState({
     overview: true,
     structure: false,
     geology: false
   })
+
+
 
   const colorsObject = {
     Mercury: "#419EBB",
@@ -35,39 +40,16 @@ export default function Planet() {
     <>
       <div className="flex items-center justify-center flex-col ">
         <div className="flex w-[1440px] max-xl:flex-col p-[0_100px_0_100px]! justify-between">
-          <div className="w-[100%]! flex items-center justify-center">
-            <div className="relative h-[700px]! min-w-[700px] flex items-center justify-center">
-              <img src={states.structure ? planet?.images.internal : planet?.images.planet} className="block" alt="" />
-              {states.geology ? <img src={planet?.images.geology} className="absolute bottom-[5%] left-[38.34%] w-[163px]!" alt="" /> : null}
-            </div>
-          </div>
+            <PlanetImage planet={planet} states={states}/>
           <div className="max-w-[350px] max-xl:p-[0_100px_50px_100px]! max-xl:max-w-[100%]!  m-[150px_0_0_100px]! max-xl:m-0!">
             <div className="flex flex-col gap-[30px] max-xl:justify-between max-xl:flex-row">
-              <div className="flex flex-col gap-[30px] max-xl:max-w-[350px]!">
-                <h1 className={`${H1}`}>{planet?.name}</h1>
-                <p className={`${P}`}>{states.overview ? planet?.overview.content : states.structure ? planet?.structure.content : states.geology ? planet?.geology.content : ""}</p>
-                <h4 className={`${P} text-[rgba(255,255,255,0.5)]! flex gap-[5px]`}>Source : <span className={`${P} font-[700] flex items-center gap-[10px] text-[rgba(255,255,255,0.7)]!`}><a href={states.overview ? planet?.overview.source : states.structure ? planet?.structure.source : states.geology ? planet?.geology.source : ""} className="underline">Wikipedia</a><img src="/images/icon-source.svg" alt="" /></span></h4>
-              </div>
-              <div className="flex flex-col max-xl:min-w-[350px]! gap-[20px]">
-                <button className={`${buttonStyle}`} style={states.overview ? { backgroundColor: planetColor } : undefined} onClick={() => {
-                  setState({ structure: false, geology: false, overview: true })
-                }}><span className={`${H3} text-[rgba(255,255,255,0.5)]!`}>01</span>Overview</button>
-                <button className={`${buttonStyle}`} style={states.structure ? { backgroundColor: planetColor } : undefined} onClick={() => {
-                  setState({ structure: true, geology: false, overview: false })
-                }}><span className={`${H3} text-[rgba(255,255,255,0.5)]!`}>02</span>Structure</button>
-                <button style={states.geology ? { backgroundColor: planetColor } : undefined} onClick={() => {
-                  setState({ structure: false, geology: true, overview: false })
-                }} className={`${buttonStyle}`}><span className={`${H3} text-[rgba(255,255,255,0.5)]!`}>03</span>Geology</button>
-              </div>
+              <PlanetText states={states} H1={H1} P={P} planet={planet} />
+              <PlanetButtons buttonStyle={buttonStyle} states={states} planetColor={planetColor} setState={setState} H3={H3} />
             </div>
           </div>
-
         </div>
         <div className="max-xl:w-[1240px]! flex p-[0_100px_30px_100px]! w-[1440px] items-center justify-between gap-[24px]">
-          <PlanetInfo title="ROTATION TIME" info={planet?.rotation} />
-          <PlanetInfo title="REVOLUTION TIME" info={planet?.revolution} />
-          <PlanetInfo title="RADIUS" info={planet?.radius} />
-          <PlanetInfo title="AVERAGE TEMPERATURE" info={planet?.temperature} />
+          <PlanetInfos planet={planet} />
         </div>
       </div >
     </>
