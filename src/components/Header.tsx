@@ -25,13 +25,12 @@ export default function Header({ Data, H2, H4 }: THeader) {
     return (
         <header className="w-[100%] items-center justify-center border-solid border-b-[1px] border-b-[rgba(255,255,255,0.2)]  p-[0_50px_0px_50px]! flex">
             <div className="items-center justify-between flex w-[1440px]">
-                <h1 className={`${H2} text-[2.8rem]! m-[30px_0_20px_0]!`}>THE PLANETS</h1>
+                <h1 className={`${H2} text-[2.8rem]! m-[30px_0_30px_0]!`}>THE PLANETS</h1>
                 <nav>
                     <ul className="flex gap-[32px]">
                         {Data.map((e) => {
                             return <Link key={e.name} to={`/planets/${e.name}`}>
-
-                                <li style={{borderTop: colorsObject[e?.name as keyof typeof colorsObject]}} className={`${H4} pt-[26px]! hover:pt-[32px]! h-[100%]! mb-[24px]! border-t-[4px]! border-hidden hover:border-solid! cursor-pointer`}>{e.name.toUpperCase()}</li>
+                                <li style={{ borderTop: colorsObject[e?.name as keyof typeof colorsObject] }} className={`${H4} pt-[26px]! hover:pt-[22px]! h-[100%]! mb-[24px]! border-t-[4px]! border-hidden hover:border-solid! cursor-pointer`}>{e.name.toUpperCase()}</li>
                             </Link>
                         })}
                     </ul>
