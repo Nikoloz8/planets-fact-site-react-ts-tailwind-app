@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-size: 10px;
+    font-family: "League Spartan";
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+}
