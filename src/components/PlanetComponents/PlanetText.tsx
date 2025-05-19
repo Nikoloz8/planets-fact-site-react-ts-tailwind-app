@@ -10,16 +10,14 @@ type TPlanetData = {
     geology: TPlanetSection
 }
 
-type SectionState =
-    | { overview: true; structure: false; geology: false }
-    | { overview: false; structure: true; geology: false }
-    | { overview: false; structure: false; geology: true };
+type SectionState = { overview: boolean; structure:  boolean; geology:  boolean }
+
 
 type IPlanetTextProps = {
     states: SectionState
     H1?: string
     P?: string
-    planet: TPlanetData
+    planet: TPlanetData | undefined
 }
 
 export default function PlanetText({ H1, states, planet, P }: IPlanetTextProps) {

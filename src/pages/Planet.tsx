@@ -7,14 +7,19 @@ import PlanetButtons from "../components/PlanetComponents/PlanetButtons"
 import PlanetInfos from "../components/PlanetComponents/PlanetInfos"
 import PlanetImage from "../components/PlanetComponents/PlanetImage"
 
-
 export default function Planet() {
 
   const { H1, P, H3, buttonStyle } = Tailwind()
-
   const { planetName } = useParams()
+
   const planet = Data.find((planet) => planet.name === planetName)
-  const [states, setState] = useState({
+
+
+  const [states, setState] = useState<{
+    overview:boolean,
+    structure:boolean,
+    geology:boolean
+  }>({
     overview: true,
     structure: false,
     geology: false
@@ -40,7 +45,7 @@ export default function Planet() {
     <>
       <div className="flex items-center justify-center flex-col ">
         <div className="flex w-[1440px] max-xl:flex-col p-[0_100px_0_100px]! justify-between">
-            <PlanetImage planet={planet} states={states}/>
+          <PlanetImage planet={planet} states={states} />
           <div className="max-w-[350px] max-xl:p-[0_100px_50px_100px]! max-xl:max-w-[100%]!  m-[150px_0_0_100px]! max-xl:m-0!">
             <div className="flex flex-col gap-[30px] max-xl:justify-between max-xl:flex-row">
               <PlanetText states={states} H1={H1} P={P} planet={planet} />
