@@ -26,7 +26,7 @@ export default function Header({ Data, H2, H4 }: THeader) {
         <header className="w-[100%] items-center justify-center border-solid border-b-[1px] border-b-[rgba(255,255,255,0.2)]  p-[0_50px_0px_50px]! flex">
             <div className="items-center justify-between flex w-[1440px]">
                 <h1 className={`${H2} text-[2.8rem]! m-[30px_0_30px_0]!`}>THE PLANETS</h1>
-                <nav>
+                <nav className="mt-[-12px]!">
                     <ul className="flex gap-[32px]">
                         {Data.map((e) => {
                             return <Link key={e.name} to={`/planets/${e.name}`}>
