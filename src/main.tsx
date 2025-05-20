@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout'
 import Planet from './pages/Planet'
 
@@ -14,11 +14,7 @@ const router = createBrowserRouter([
 
       {
         element: <Planet />,
-        path: "planets/:planetName/"
-      },
-      {
-        index:true,
-        element: <Navigate to="/planets/Mercury" replace />
+        path: "/:planetName/"
       }
     ]
   }

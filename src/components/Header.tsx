@@ -29,7 +29,7 @@ export default function Header({ Data, H2, H4 }: THeader) {
                 <nav className="mt-[-12px]!">
                     <ul className="flex gap-[32px]">
                         {Data.map((e) => {
-                            return <Link key={e.name} to={`/planets/${e.name}`}>
+                            return <Link key={e.name} to={`/${e.name}`}>
                                 <li style={{ borderTop: colorsObject[e?.name as keyof typeof colorsObject] }} className={`${H4} pt-[26px]! hover:pt-[22px]! h-[100%]! mb-[24px]! border-t-[4px]! border-hidden hover:border-solid! cursor-pointer`}>{e.name.toUpperCase()}</li>
                             </Link>
                         })}

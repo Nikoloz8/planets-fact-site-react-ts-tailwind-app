@@ -14,11 +14,10 @@ export default function Planet() {
 
   const planet = Data.find((planet) => planet.name === planetName)
 
-
   const [states, setState] = useState<{
-    overview:boolean,
-    structure:boolean,
-    geology:boolean
+    overview: boolean,
+    structure: boolean,
+    geology: boolean
   }>({
     overview: true,
     structure: false,
